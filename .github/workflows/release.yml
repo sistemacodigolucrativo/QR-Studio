@@ -44,7 +44,7 @@ jobs:
           echo "ANDROID_KEY_PASSWORD=$ANDROID_KEY_PASSWORD" >> "$GITHUB_ENV"
       - name: Compilar release assinada
         run: ./gradlew --no-daemon validateAppConfig :app:assembleProdRelease :app:bundleProdRelease
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kotlin-master-prod-signed-apk-aab
           path: |

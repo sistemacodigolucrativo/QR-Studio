@@ -39,12 +39,12 @@ jobs:
       - name: Compilar e testar app e feature
         run: |
           ./gradlew --no-daemon :app:assembleDevDebug :app:assembleProdRelease :app:bundleProdRelease :feature:home:testDebugUnitTest :core:ads:testDebugUnitTest :feature:home:assembleDebugAndroidTest :app:lintDevDebug --stacktrace
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kotlin-master-dev-debug-apk
           path: app/build/outputs/apk/dev/debug/*.apk
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kotlin-master-prod-unsigned-aab
           path: app/build/outputs/bundle/prodRelease/*.aab
