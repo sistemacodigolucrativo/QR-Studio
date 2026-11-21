@@ -38,13 +38,14 @@ fun AdMobFooter(modifier: Modifier = Modifier) {
         if (!preview) {
             val size = AdSize.getLargeAnchoredAdaptiveBannerAdSize(context, width)
             val request = BannerAdRequest.Builder(config.bannerId, size).build()
-            adView.loadAd(request, object : AdLoadCallback<BannerAd> {
+            val callback = object : AdLoadCallback<BannerAd> {
                 override fun onAdLoaded(ad: BannerAd) { }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
                     Log.w("UniversalAds", "Banner unavailable: " + error.message)
                 }
-            })
+            }
+            adView.loadAd(request, callback)
         }
     }
     Box(modifier = modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
