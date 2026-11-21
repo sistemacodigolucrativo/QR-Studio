@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="home_counter">%1$d items</string>
-    <string name="home_increment">Increase</string>
+    <string name="qr_title">QR Studio</string>
+    <string name="qr_subtitle">Create QR codes for links, Wi-Fi text and other information, even offline.</string>
+    <string name="qr_input_label">Enter text or a link</string>
+    <string name="qr_generate">Generate QR code</string>
+    <string name="qr_share_text">Share text</string>
+    <string name="qr_result_description">Generated QR code</string>
+    <string name="qr_history_title">Recent codes</string>
+    <string name="qr_history_empty">Your generated QR codes will appear here.</string>
+    <string name="qr_remove">Delete</string>
+    <string name="qr_error_empty">Enter a value before generating.</string>
+    <string name="qr_error_too_long">Input is too long (maximum 1024 bytes).</string>
+    <string name="qr_error_generation">Could not generate this QR code.</string>
 </resources>

@@ -1,4 +1,5 @@
 import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -6,9 +7,11 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
 }
+
 val appConfig = Properties().apply {
     rootProject.file("app-config.properties").inputStream().use { load(it) }
 }
+
 android {
     namespace = "br.com.universalbuild.feature.home"
     compileSdk = appConfig.getProperty("compileSdk").toInt()
@@ -23,14 +26,17 @@ android {
     }
 }
 kotlin { jvmToolchain(17) }
+
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:database"))
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.zxing.core)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
