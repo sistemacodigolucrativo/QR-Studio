@@ -18,9 +18,17 @@ Aplicativo Android derivado do Kotlin Master Boilerplate. A base mestre permanec
 - Compartilhar/exportar imagem (FileProvider), favoritos, categorias, formatos Wi-Fi/VCard.
 - Identidade visual e ícone próprios, testes reais e acessibilidade.
 - Configuração de assinatura release com chave do proprietário, políticas e envio AAB à Play.
-- Eventual AdMob após decisão sobre consentimento, monetização e revisão da conta/app.
+- Validar consentimento AdMob/Google UMP, formatos monetizados e políticas da Play Store.
 
-Os recursos de câmera, exportação de imagem e AdMob NÃO estão implementados nesta entrega.
+Os recursos de câmera e exportação de imagem ainda não estão implementados. **AdMob nativo existe nesta branch de integração**, com modo `off` por padrão. A `main` ainda pode conter a versão inicial sem AdMob; verificar a PR.
+
+## AdMob e Universal Build
+
+Esta branch contém `:core:ads` nativo, Google UMP e `config/universal-build-admob.json` em `mode=off`. O painel Universal Build lê/grava a configuração **por branch**. Selecionar uma branch funcional é necessário para testar o QR Code + banner; não use automaticamente `main` enquanto o MVP e a integração estiverem em PRs.
+
+Para testar banner demonstrativo, ver [experimento PR 8](https://github.com/sistemacodigolucrativo/QR-Studio/pull/8). `devDebug` usa unidades de teste oficiais; `prodRelease` não usa anúncios demonstrativos; App ID e unidades reais só entram quando o projeto estiver autorizado para `mode=live`. Intersticial e recompensado exigem pontos de exibição apropriados e validação antes de ativar.
+
+[Contrato e limitações](docs/ADMOB-NATIVO.md) · [Console Universal Build](https://github.com/sistemacodigolucrativo/Universal-Build/blob/feat/console-admob-build-ux/docs/CONSOLE-UX-ADMOB-PROGRESSO.md).
 
 ## Como testar
 
