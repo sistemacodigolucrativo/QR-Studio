@@ -10,10 +10,9 @@ import kotlinx.coroutines.flow.map
 
 /** Reuses the template's v1 Room table without a destructive schema change. */
 class RoomQrHistoryRepository(private val dao: SavedItemDao) : QrHistoryRepository {
-    override fun observeRecent(): Flow<List<QrHistoryItem>> =
-        dao.observeAll().map { items ->
-            items.map { item -> QrHistoryItem(item.id, item.title, item.createdAt) }
-        }
+    override fun observeRecent(): Flow<List<QrHistoryItem>> = dao.observeAll().map { items ->
+        items.map { item -> QrHistoryItem(item.id, item.title, item.createdAt) }
+    }
 
     override suspend fun save(payload: String) {
         dao.save(SavedItem(UUID.randomUUID().toString(), payload, System.currentTimeMillis()))
