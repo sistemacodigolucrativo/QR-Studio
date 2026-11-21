@@ -1,0 +1,4 @@
+-keepattributes Signature,InnerClasses,EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations,RuntimeInvisibleAnnotations
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface <1>

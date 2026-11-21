@@ -1,0 +1,14 @@
+build:
+  maxIssues: 0
+naming:
+  FunctionNaming:
+    active: true
+    ignoreAnnotated: ['Composable']
+  MatchingDeclarationName:
+    active: true
+    excludes:
+      - '**/theme/Dimens.kt'
+      - '**/theme/Type.kt'
+      - '**/theme/Shape.kt'
+      - '**/theme/Theme.kt'
+      - '**/core/ui/**/ScreenStates.kt'

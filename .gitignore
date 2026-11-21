@@ -1,0 +1,26 @@
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.apk
+*.aab
+*.ap_
+*.keystore
+*.jks
+*.p12
+*.key
+*.pem
+captures/
+.externalNativeBuild/
+.cxx/
+.idea/
+*.iml
+.DS_Store
+# Sensitive and generated files
+.env
+.env.*
+!.env.example
+secrets.properties
+**/google-services.json
+**/firebase-config.json
+*.log

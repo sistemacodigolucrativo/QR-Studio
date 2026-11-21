@@ -1,0 +1,31 @@
+name: Kotlin Master - Integracao Universal Build
+on:
+  push:
+    branches: [main, feature/universal-console-bridge]
+    paths:
+      - 'app/**'
+      - 'core/**'
+      - 'feature/**'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'build.gradle.kts'
+      - 'settings.gradle.kts'
+      - 'app-config.properties'
+      - '.github/workflows/universal-build-integration.yml'
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  universal-build-smoke:
+    name: Compilar no motor Universal Build
+    uses: sistemacodigolucrativo/Universal-Build/.github/workflows/android-reusable.yml@main
+    with:
+      build_target: both-unsigned
+      project_dir: .
+      android_module: app
+      android_flavor: auto
+      java_version: '17'
+      node_version: '20'
+      flutter_version: ''
+      upload_zip_path: ''

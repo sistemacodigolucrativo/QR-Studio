@@ -1,0 +1,51 @@
+name: Kotlin Master - Gate de compilacao
+on:
+  push:
+    branches: [main, 'implementation/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android:
+    name: Build, testes e qualidade
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Preparar Android SDK 36
+        run: |
+          set -euo pipefail
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$SDK/cmdline-tools/latest/bin/sdkmanager" --install 'platforms;android-36' 'build-tools;36.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Testar editor de configuração
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Verificar wrapper e config
+        run: |
+          set -euo pipefail
+          test -s gradle/wrapper/gradle-wrapper.jar
+          test "$(git hash-object gradle/wrapper/gradle-wrapper.jar)" = '9bbc975c742b298b441bfb90dbc124400a3751b9'
+          ./gradlew --version
+          ./gradlew validateAppConfig
+      - name: ktlint e detekt (gate)
+        run: ./gradlew --no-daemon ktlintCheck detekt --continue --stacktrace
+      - name: Compilar e testar app e feature
+        run: |
+          ./gradlew --no-daemon :app:assembleDevDebug :app:assembleProdRelease :app:bundleProdRelease :feature:home:testDebugUnitTest :feature:home:assembleDebugAndroidTest :app:lintDevDebug --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kotlin-master-dev-debug-apk
+          path: app/build/outputs/apk/dev/debug/*.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kotlin-master-prod-unsigned-aab
+          path: app/build/outputs/bundle/prodRelease/*.aab
+          if-no-files-found: error

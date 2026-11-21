@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="state_empty">Nothing here yet</string>
+    <string name="state_offline">No internet connection</string>
+    <string name="state_error">Something went wrong</string>
+    <string name="action_retry">Try again</string>
+</resources>
