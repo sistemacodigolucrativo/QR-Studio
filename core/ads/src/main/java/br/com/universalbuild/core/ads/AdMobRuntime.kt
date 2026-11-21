@@ -104,7 +104,9 @@ object AdMobRuntime {
         val now = SystemClock.elapsedRealtime()
         if (lastInterstitialAt != 0L &&
             now - lastInterstitialAt < config.interstitialCooldownSeconds * 1000L
-        ) return false
+        ) {
+            return false
+        }
         val ad = interstitial ?: return false
         interstitial = null
         ad.adEventCallback = object : InterstitialAdEventCallback {
@@ -138,18 +140,21 @@ object AdMobRuntime {
                 activity.runOnUiThread { preloadRewarded() }
             }
         }
-        ad.show(activity, object : OnUserEarnedRewardListener {
+        val listener = object : OnUserEarnedRewardListener {
             override fun onUserEarnedReward(item: RewardItem) {
                 activity.runOnUiThread { onEarned(item.amount, item.type) }
             }
-        })
+        }
+        ad.show(activity, listener)
         return true
     }
 
     fun preloadInterstitial() {
         if (!mutableReady.value || !config.interstitialEnabled ||
             loadingInterstitial || interstitial != null
-        ) return
+        ) {
+            return
+        }
         loadingInterstitial = true
         InterstitialAd.load(
             AdRequest.Builder(config.interstitialId).build(),
@@ -170,7 +175,9 @@ object AdMobRuntime {
     fun preloadRewarded() {
         if (!mutableReady.value || !config.rewardedEnabled ||
             loadingRewarded || rewarded != null
-        ) return
+        ) {
+            return
+        }
         loadingRewarded = true
         RewardedAd.load(
             AdRequest.Builder(config.rewardedId).build(),
