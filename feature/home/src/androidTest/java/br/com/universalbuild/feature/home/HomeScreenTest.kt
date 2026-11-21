@@ -12,12 +12,21 @@ class HomeScreenTest {
     @get:Rule val rule = createComposeRule()
 
     @Test
-    fun incrementActionIsVisible() {
+    fun generateActionIsVisible() {
         rule.setContent {
-            MasterTheme(brandColorHex = "#2255FF") {
-                HomeScreen(HomeUiState(), isExpanded = false, onIncrement = {})
+            MasterTheme(brandColorHex = "#176FAF") {
+                HomeScreen(
+                    state = HomeUiState(),
+                    isExpanded = false,
+                    onInputChange = {},
+                    onGenerate = {},
+                    onOpenHistory = {},
+                    onDeleteHistory = {},
+                    onShare = {}
+                )
             }
         }
-        rule.onNodeWithTag("home-increment").assertExists()
+        rule.onNodeWithTag("qr-input").assertExists()
+        rule.onNodeWithTag("qr-generate").assertExists()
     }
 }
