@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "mode": "test",
+  "appId": "ca-app-pub-6870241712967285~2486391982",
+  "units": {
+    "banner": "ca-app-pub-6870241712967285/7411415601",
+    "interstitial": "ca-app-pub-3940256099942544/1033173712",
+    "rewarded": "ca-app-pub-3940256099942544/5224354917"
+  },
+  "enabled": {
+    "banner": true,
+    "interstitial": false,
+    "rewarded": false
+  },
+  "interstitialCooldownSeconds": 120
+}
