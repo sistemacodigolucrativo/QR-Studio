@@ -156,11 +156,7 @@ fun HomeScreen(
 }
 
 @Composable
-private fun HistoryRow(
-    item: QrHistoryItem,
-    onOpenHistory: (String) -> Unit,
-    onDeleteHistory: (String) -> Unit
-) {
+private fun HistoryRow(item: QrHistoryItem, onOpenHistory: (String) -> Unit, onDeleteHistory: (String) -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
