@@ -38,7 +38,7 @@ jobs:
         run: ./gradlew --no-daemon ktlintCheck detekt --continue --stacktrace
       - name: Compilar e testar app e feature
         run: |
-          ./gradlew --no-daemon :app:assembleDevDebug :app:assembleProdRelease :app:bundleProdRelease :feature:home:testDebugUnitTest :feature:home:assembleDebugAndroidTest :app:lintDevDebug --stacktrace
+          ./gradlew --no-daemon :app:assembleDevDebug :app:assembleProdRelease :app:bundleProdRelease :feature:home:testDebugUnitTest :core:ads:testDebugUnitTest :feature:home:assembleDebugAndroidTest :app:lintDevDebug --stacktrace
       - uses: actions/upload-artifact@v4
         with:
           name: kotlin-master-dev-debug-apk

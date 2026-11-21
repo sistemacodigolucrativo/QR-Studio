@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "mode": "off",
+  "appId": "",
+  "units": {
+    "banner": "",
+    "interstitial": "",
+    "rewarded": ""
+  },
+  "enabled": {
+    "banner": false,
+    "interstitial": false,
+    "rewarded": false
+  },
+  "interstitialCooldownSeconds": 120
+}

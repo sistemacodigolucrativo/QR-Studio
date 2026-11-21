@@ -16,3 +16,4 @@ rootProject.name = "KotlinMasterBoilerplate"
 include(":app")
 include(":core:common", ":core:designsystem", ":core:network", ":core:database", ":core:ui")
 include(":feature:home")
+include(":core:ads")
